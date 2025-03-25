@@ -1,4 +1,19 @@
 POST http://localhost:8080/person
 Accept: application/json
+Content-Type: application/json
 
-<> post.json
+<> create.json
+
+###
+@id = 550e8400-e29b-41d4-a716-446655440000
+
+###
+GET http://localhost:8080/person/{{id}}
+Accept: application/json
+Content-Type: application/json
+
+###
+PUT http://localhost:8080/person/{{id}}
+Content-Type: application/json
+
+<> update.json
