@@ -7,23 +7,21 @@ import java.util.UUID;
 
 @Service
 public class PersonService {
-    public UUID create(Person person) {
+    public String create(Person person) {
         System.out.println("Create service");
-        UUID id = UUID.randomUUID();
-        person.setId(id);
-        return id;
+        return person.getDni();
     }
 
-    public Person read(UUID uuid) {
+    public Person read(String dni) {
         System.out.println("Read Service");
         return Person.builder()
-                .id(uuid)
+                .dni(dni)
                 .name("Javier")
                 .surname("Celada")
                 .build();
     }
 
-    public void update(UUID uuid, Person person) {
+    public void update(String dni, Person person) {
         System.out.println("Update Service");
     }
 }

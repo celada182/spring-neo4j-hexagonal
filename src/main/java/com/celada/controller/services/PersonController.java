@@ -1,4 +1,4 @@
-package com.celada.controller;
+package com.celada.controller.services;
 
 import com.celada.api.PersonApi;
 import com.celada.controller.mapper.PersonMapper;
@@ -21,15 +21,15 @@ public class PersonController implements PersonApi {
     }
 
     @Override
-    public ResponseEntity<UUID> create(com.celada.api.model.Person request) {
+    public ResponseEntity<String> create(com.celada.api.model.Person request) {
         System.out.println("Person controller: Create");
         Person person = PersonMapper.INSTANCE.toDomain(request);
-        UUID id = personService.create(person);
-        return ResponseEntity.ok(id);
+        String dni = personService.create(person);
+        return ResponseEntity.ok(dni);
     }
 
     @Override
-    public ResponseEntity<com.celada.api.model.Person> read(UUID id) {
+    public ResponseEntity<com.celada.api.model.Person> read(String id) {
         System.out.println("Person controller: Read");
         Person person = personService.read(id);
         com.celada.api.model.Person response = PersonMapper.INSTANCE.toApi(person);
@@ -37,10 +37,10 @@ public class PersonController implements PersonApi {
     }
 
     @Override
-    public ResponseEntity<Void> update(UUID id, com.celada.api.model.Person request) {
+    public ResponseEntity<Void> update(String dni, com.celada.api.model.Person request) {
         System.out.println("Person controller: Update");
         Person person = PersonMapper.INSTANCE.toDomain(request);
-        personService.update(id, person);
+        personService.update(dni, person);
         return ResponseEntity.ok().build();
     }
 

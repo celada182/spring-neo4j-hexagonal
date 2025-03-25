@@ -21,23 +21,21 @@ paths:
             application/json:
               schema:
                 type: string
-                format: uuid
         '400':
           description: Invalid payload
         default:
           description: Unexpected error
-  /person/{id}:
+  /person/{dni}:
     get:
       description: Read person
       operationId: read
       parameters:
-        - name: id
+        - name: dni
           in: path
           description: ID of the person
           required: true
           schema:
             type: string
-            format: uuid
       responses:
         '200':
           description: Successful read
@@ -53,13 +51,12 @@ paths:
       description: Update person
       operationId: update
       parameters:
-        - name: id
+        - name: dni
           in: path
           description: ID of the person
           required: true
           schema:
             type: string
-            format: uuid
       requestBody:
         content:
           application/json:
@@ -77,9 +74,12 @@ components:
     Person:
       type: object
       required:
+        - dni
         - name
         - surname
       properties:
+        dni:
+          type: string
         name:
           type: string
         surname:
