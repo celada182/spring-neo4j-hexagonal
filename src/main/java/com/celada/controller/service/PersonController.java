@@ -1,13 +1,11 @@
-package com.celada.controller.services;
+package com.celada.controller.service;
 
 import com.celada.api.PersonApi;
 import com.celada.controller.mapper.PersonMapper;
 import com.celada.domain.model.Person;
-import com.celada.domain.services.PersonService;
+import com.celada.domain.service.PersonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
-import java.util.UUID;
 
 @Controller
 public class PersonController implements PersonApi {

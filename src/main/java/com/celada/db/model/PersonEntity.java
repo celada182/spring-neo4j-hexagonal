@@ -1,4 +1,4 @@
-package com.celada.repository.model;
+package com.celada.db.model;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-public class Person {
+public class PersonEntity {
     @Id
     @GeneratedValue
     private Long id;
@@ -23,17 +23,17 @@ public class Person {
     private String name;
     private String surname;
     @Relationship("HAS_FATHER")
-    private Person father;
+    private PersonEntity father;
     @Relationship("HAS_MOTHER")
-    private Person mother;
+    private PersonEntity mother;
     @Relationship("HAS_WIFE")
-    private Person wife;
+    private PersonEntity wife;
     @Relationship("HAS_HUSBAND")
-    private Person husband;
+    private PersonEntity husband;
     @Relationship("HAS_CHILDREN")
-    private List<Person> children;
+    private List<PersonEntity> children;
     @Relationship("HAS_BROTHERS")
-    private List<Person> brothers;
+    private List<PersonEntity> brothers;
     @Relationship("HAS_SISTER")
-    private List<Person> sisters;
+    private List<PersonEntity> sisters;
 }
