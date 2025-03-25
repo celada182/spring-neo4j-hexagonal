@@ -2,7 +2,10 @@ POST http://localhost:8080/person
 Accept: application/json
 Content-Type: application/json
 
-<> create.json
+{
+  "name": "Javier",
+  "surname": "Celada"
+}
 
 ###
 @id = 550e8400-e29b-41d4-a716-446655440000
@@ -16,4 +19,7 @@ Content-Type: application/json
 PUT http://localhost:8080/person/{{id}}
 Content-Type: application/json
 
-<> update.json
+{
+  "name": "Javier",
+  "surname": "Celada"
+}
