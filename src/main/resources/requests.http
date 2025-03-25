@@ -5,7 +5,86 @@ Content-Type: application/json
 {
   "dni": "00000000A",
   "name": "Javier",
-  "surname": "Celada"
+  "surname": "Celada",
+  "father": {
+    "dni": "00000000B",
+    "name": "Padre",
+    "surname": "Celada"
+  },
+  "mother": {
+    "dni": "00000000C",
+    "name": "Madre",
+    "surname": "Celada"
+  },
+  "brothers": [
+    {
+      "dni": "00000000D",
+      "name": "First",
+      "surname": "Brother"
+    },
+    {
+      "dni": "00000000E",
+      "name": "Second",
+      "surname": "Brother"
+    }
+  ],
+  "sisters": [
+    {
+      "dni": "00000000F",
+      "name": "First",
+      "surname": "Sister"
+    },
+    {
+      "dni": "00000000G",
+      "name": "Second",
+      "surname": "Sister"
+    }
+  ]
+}
+
+###
+POST http://localhost:8080/person
+Accept: application/json
+Content-Type: application/json
+
+{
+  "dni": "10000000A",
+  "name": "Maria",
+  "surname": "Garrido",
+  "father": {
+    "dni": "10000000B",
+    "name": "Padre",
+    "surname": "Garrido"
+  },
+  "mother": {
+    "dni": "10000000C",
+    "name": "Madre",
+    "surname": "Garrido"
+  },
+  "brothers": [
+    {
+      "dni": "10000000D",
+      "name": "First",
+      "surname": "Brother"
+    },
+    {
+      "dni": "10000000E",
+      "name": "Second",
+      "surname": "Brother"
+    }
+  ],
+  "sisters": [
+    {
+      "dni": "10000000F",
+      "name": "First",
+      "surname": "Sister"
+    },
+    {
+      "dni": "10000000G",
+      "name": "Second",
+      "surname": "Sister"
+    }
+  ]
 }
 
 ###
@@ -21,6 +100,19 @@ PUT http://localhost:8080/person/{{dni}}
 Content-Type: application/json
 
 {
-  "name": "Javier",
-  "surname": "Celada"
+  "wife": {
+    "dni": "10000000A"
+  },
+  "children": [
+    {
+      "dni": "00000000H",
+      "name": "First",
+      "surname": "Child"
+    },
+    {
+      "dni": "00000000I",
+      "name": "Second",
+      "surname": "Child"
+    }
+  ]
 }
