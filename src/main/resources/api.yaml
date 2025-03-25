@@ -1,0 +1,106 @@
+openapi: 3.0.4
+info:
+  title: Family Tree - OpenAPI 3.1
+  version: 0.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /person:
+    post:
+      description: Create person
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Person"
+      responses:
+        '200':
+          description: Successful create
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+        '400':
+          description: Invalid payload
+        default:
+          description: Unexpected error
+  /person/{id}:
+    get:
+      description: Read person
+      operationId: read
+      parameters:
+        - name: id
+          in: path
+          description: ID of the person
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful read
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        '404':
+          description: Person not found
+        default:
+          description: Unexpected error
+    put:
+      description: Update person
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          description: ID of the person
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Person"
+      responses:
+        '200':
+          description: Successful update
+        '404':
+          description: Person not found
+        default:
+          description: Unexpected error
+components:
+  schemas:
+    Person:
+      type: object
+      required:
+        - name
+        - surname
+      properties:
+        name:
+          type: string
+        surname:
+          type: string
+        father:
+          $ref: "#/components/schemas/Person"
+        mother:
+          $ref: "#/components/schemas/Person"
+        brothers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+        sisters:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+        husband:
+          $ref: "#/components/schemas/Person"
+        wife:
+          $ref: "#/components/schemas/Person"
+        children:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"

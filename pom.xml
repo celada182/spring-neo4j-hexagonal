@@ -81,25 +81,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>1.17.6</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.testcontainers</groupId>
-			<artifactId>neo4j</artifactId>
-			<version>1.17.6</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -141,12 +122,10 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpecRootDirectory>
-								${project.basedir}/src/main/resources/api
-							</inputSpecRootDirectory>
+							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>com.ista.spring.pds.api</apiPackage>
-							<modelPackage>com.ista.spring.pds.api.model</modelPackage>
+							<apiPackage>com.celada.api</apiPackage>
+							<modelPackage>com.celada.api.model</modelPackage>
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<skipOperationExample>true</skipOperationExample>
 							<configOptions>
