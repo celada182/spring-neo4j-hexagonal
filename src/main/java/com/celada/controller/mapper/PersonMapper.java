@@ -9,7 +9,7 @@ import org.mapstruct.factory.Mappers;
 public interface PersonMapper {
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
-    Person toDomain(com.celada.api.model.Person person);
+    Person toDomain(com.celada.controller.model.Person person);
 
-    com.celada.api.model.Person toApi(Person person);
+    com.celada.controller.model.Person toApi(Person person);
 }

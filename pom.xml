@@ -126,6 +126,7 @@
 							<version>1.6.3</version>
 						</path>
 					</annotationProcessorPaths>
+					<generatedSourcesDirectory>${project.build.directory}/generated-sources</generatedSourcesDirectory>
 				</configuration>
 			</plugin>
 			<!--OPENAPI GENERATOR-->
@@ -141,8 +142,8 @@
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>com.celada.api</apiPackage>
-							<modelPackage>com.celada.api.model</modelPackage>
+							<apiPackage>com.celada.controller</apiPackage>
+							<modelPackage>com.celada.controller.model</modelPackage>
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<skipOperationExample>true</skipOperationExample>
 							<configOptions>
