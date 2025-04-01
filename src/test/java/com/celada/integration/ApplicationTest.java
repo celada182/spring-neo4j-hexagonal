@@ -31,8 +31,7 @@ public class ApplicationTest {
 
     RestTemplate restTemplate = new RestTemplate();
 
-    static final Neo4jContainer<?> neo4j = new Neo4jContainer<>("neo4j:4.4")
-            .withReuse(true);
+    static final Neo4jContainer<?> neo4j = new Neo4jContainer<>("neo4j:2025.02.0");
 
     @DynamicPropertySource
     static void neo4jProperties(DynamicPropertyRegistry registry) {
@@ -54,7 +53,8 @@ public class ApplicationTest {
                 .dni(dni)
                 .build();
         String uri = String.format("http://localhost:%d/person", port);
-        RequestEntity<Person> request = new RequestEntity<>(person, HttpMethod.POST, URI.create(uri));
+        com.celada.controller.model.Person apiPerson = com.celada.controller.mapper.PersonMapper.INSTANCE.toApi(person);
+        RequestEntity<com.celada.controller.model.Person> request = new RequestEntity<>(apiPerson, HttpMethod.POST, URI.create(uri));
         ResponseEntity<String> response = restTemplate.exchange(request, String.class);
 
         assert response.getStatusCode().is2xxSuccessful();
@@ -67,7 +67,7 @@ public class ApplicationTest {
         String dni = "12345678";
         String uri = String.format("http://localhost:%d/person/%s", port, dni);
         RequestEntity<Void> request = new RequestEntity<>(HttpMethod.GET, URI.create(uri));
-        ResponseEntity<Person> response = restTemplate.exchange(request, Person.class);
+        ResponseEntity<com.celada.controller.model.Person> response = restTemplate.exchange(request, com.celada.controller.model.Person.class);
 
         assert response.getStatusCode().is2xxSuccessful();
         assert response.getBody() != null;
@@ -84,7 +84,8 @@ public class ApplicationTest {
                 .dni(dni)
                 .build();
         String uri = String.format("http://localhost:%d/person", port);
-        RequestEntity<Person> request = new RequestEntity<>(person, HttpMethod.POST, URI.create(uri));
+        com.celada.controller.model.Person apiPerson = com.celada.controller.mapper.PersonMapper.INSTANCE.toApi(person);
+        RequestEntity<com.celada.controller.model.Person> request = new RequestEntity<>(apiPerson, HttpMethod.POST, URI.create(uri));
         ResponseEntity<String> response = restTemplate.exchange(request, String.class);
 
         assert response.getStatusCode().is2xxSuccessful();
@@ -116,7 +117,8 @@ public class ApplicationTest {
                 .wife(wife)
                 .children(List.of(firstChild, secondChild))
                 .build();
-        RequestEntity<Person> request = new RequestEntity<>(update, HttpMethod.PUT, URI.create(uri));
+        com.celada.controller.model.Person apiPerson = com.celada.controller.mapper.PersonMapper.INSTANCE.toApi(update);
+        RequestEntity<com.celada.controller.model.Person> request = new RequestEntity<>(apiPerson, HttpMethod.PUT, URI.create(uri));
         ResponseEntity<Void> response = restTemplate.exchange(request, Void.class);
 
         assert response.getStatusCode().is2xxSuccessful();
@@ -128,7 +130,7 @@ public class ApplicationTest {
         String dni = "12345678";
         String uri = String.format("http://localhost:%d/person/%s", port, dni);
         RequestEntity<Void> request = new RequestEntity<>(HttpMethod.GET, URI.create(uri));
-        ResponseEntity<Person> response = restTemplate.exchange(request, Person.class);
+        ResponseEntity<com.celada.controller.model.Person> response = restTemplate.exchange(request, com.celada.controller.model.Person.class);
 
         assert response.getStatusCode().is2xxSuccessful();
         assert response.getBody() != null;

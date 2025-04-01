@@ -10,7 +10,7 @@ import org.springframework.data.neo4j.core.schema.Relationship;
 
 import java.util.List;
 
-@Node
+@Node("Person")
 @Builder
 @Getter
 @Setter
